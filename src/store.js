@@ -16,6 +16,10 @@ export function searchData(searchText, type) {
       },
     })
     .then((resp) => {
-      state.moviesList = resp.data.results;
+      if (type === "movie") {
+        state.moviesList = resp.data.results;
+      } else if (type === "tv") {
+        state.seriesList = resp.data.results;
+      }
     });
 }

@@ -22,6 +22,7 @@
       <h1>Serie TV</h1>
       <ul>
         <li v-for="serie in seriesList" :key="serie.id">
+          <img :src="imageCard(serie.poster_path)" alt="" />
           <span class="px-3">Titolo: {{ serie.name }}</span>
           <span class="px-3">Titolo originale: {{ serie.original_name }}</span>
           <span class="px-3"
@@ -55,7 +56,7 @@ export default {
       return langsMap[lingua];
     },
     imageCard(image) {
-      return `https://image.tmdb.org/t/p/w342/${this.movie.image}`;
+      return `https://image.tmdb.org/t/p/w342/${image}`;
     },
   },
   computed: {

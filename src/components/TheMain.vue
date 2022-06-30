@@ -2,66 +2,29 @@
   <div class="container d-flex">
     <div>
       <h1>Film</h1>
-      <ul>
-        <li v-for="movie in moviesList" :key="movie.id">
-          <img
-            :src="imageCard(movie.poster_path)"
-            @error="replaceByDefault()"
-            alt=""
-          />
-          <span class="px-3">Titolo: {{ movie.title }}</span>
-          <span class="px-3">Titolo originale: {{ movie.original_title }}</span>
-          <span class="px-3"
-            >Lingua:
-            <span
-              class="fi"
-              :class="'fi-' + countryFlag(movie.original_language)"
-            ></span
-          ></span>
-          <span class="px-3"
-            >Voto: <span v-for="i in 5" :key="i"
-              ><i
-                v-if="i <= voteAdjustment(movie.vote_average)"
-                class="fa-solid fa-star"
-              ></i
-              ><i v-else class="fa-regular fa-star"></i></span
-          ></span
-          >
-        </li>
-      </ul>
+      <div class="row row-cols-3">
+        <div class="col" v-for="movie in moviesList" :key="movie.id">
+          <MovieCard :info="movie"></MovieCard>
+        </div>
+      </div>
     </div>
     <div>
       <h1>Serie TV</h1>
-      <ul>
-        <li v-for="serie in seriesList" :key="serie.id">
-          <img :src="imageCard(serie.poster_path)" alt="" />
-          <span class="px-3">Titolo: {{ serie.name }}</span>
-          <span class="px-3">Titolo originale: {{ serie.original_name }}</span>
-          <span class="px-3"
-            >Lingua:
-            <span
-              class="fi"
-              :class="'fi-' + countryFlag(serie.original_language)"
-            ></span
-          ></span>
-          <span class="px-3"
-            >Voto:
-            <span v-for="y in 5" :key="y"
-              ><i
-                v-if="y <= voteAdjustment(serie.vote_average)"
-                class="fa-solid fa-star"
-              ></i
-              ><i v-else class="fa-regular fa-star"></i></span
-          ></span>
-        </li>
-      </ul>
+      <div class="row row-cols-3">
+        <div class="col" v-for="serie in seriesList" :key="serie.id">
+          <SerieCard :info="serie"></SerieCard>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import MovieCard from "./MovieCard.vue";
+import SerieCard from "./SerieCard.vue";
 import { state } from "../store";
 export default {
+  name: "TheMain",
   methods: {
     countryFlag(lingua) {
       const langsMap = {
@@ -95,6 +58,7 @@ export default {
       return state.seriesList;
     },
   },
+  components: { MovieCard, SerieCard },
 };
 </script>
 

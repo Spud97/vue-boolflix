@@ -11,6 +11,7 @@
 import { searchData } from "../store";
 
 export default {
+  name: "TheHeader",
   data() {
     return {
       titolo: "",

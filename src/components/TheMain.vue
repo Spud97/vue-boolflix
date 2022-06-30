@@ -19,7 +19,13 @@
             ></span
           ></span>
           <span class="px-3"
-            >Voto: {{ voteAdjustment(movie.vote_average) }}</span
+            >Voto: <span v-for="i in 5" :key="i"
+              ><i
+                v-if="i <= voteAdjustment(movie.vote_average)"
+                class="fa-solid fa-star"
+              ></i
+              ><i v-else class="fa-regular fa-star"></i></span
+          ></span
           >
         </li>
       </ul>
@@ -76,6 +82,7 @@ export default {
     replaceByDefault() {
       return "../../public/img/notFound.png";
     },
+    //
     voteAdjustment(vote) {
       return Math.ceil(vote / 2);
     },

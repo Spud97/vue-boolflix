@@ -25,31 +25,6 @@ import SerieCard from "./SerieCard.vue";
 import { state } from "../store";
 export default {
   name: "TheMain",
-  methods: {
-    countryFlag(lingua) {
-      const langsMap = {
-        en: "us",
-        ja: "jp",
-        ko: "kr",
-      };
-      let bandiera = langsMap[lingua];
-      if (bandiera == undefined) {
-        return lingua;
-      }
-      return langsMap[lingua];
-    },
-    imageCard(image) {
-      return `https://image.tmdb.org/t/p/w342/${image}`;
-    },
-    //DA SISTEMARE VVV
-    replaceByDefault() {
-      return "../../public/img/notFound.png";
-    },
-    //
-    voteAdjustment(vote) {
-      return Math.ceil(vote / 2);
-    },
-  },
   computed: {
     moviesList() {
       return state.moviesList;

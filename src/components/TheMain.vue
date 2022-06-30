@@ -4,7 +4,11 @@
       <h1>Film</h1>
       <ul>
         <li v-for="movie in moviesList" :key="movie.id">
-          <img :src="imageCard(movie.poster_path)" alt="" />
+          <img
+            :src="imageCard(movie.poster_path)"
+            @error="replaceByDefault()"
+            alt=""
+          />
           <span class="px-3">Titolo: {{ movie.title }}</span>
           <span class="px-3">Titolo originale: {{ movie.original_title }}</span>
           <span class="px-3"
@@ -14,7 +18,9 @@
               :class="'fi-' + countryFlag(movie.original_language)"
             ></span
           ></span>
-          <span class="px-3">Voto: {{ movie.vote_average }}</span>
+          <span class="px-3"
+            >Voto: {{ voteAdjustment(movie.vote_average) }}</span
+          >
         </li>
       </ul>
     </div>
@@ -32,7 +38,15 @@
               :class="'fi-' + countryFlag(serie.original_language)"
             ></span
           ></span>
-          <span class="px-3">Voto: {{ serie.vote_average }}</span>
+          <span class="px-3"
+            >Voto:
+            <span v-for="y in 5" :key="y"
+              ><i
+                v-if="y <= voteAdjustment(serie.vote_average)"
+                class="fa-solid fa-star"
+              ></i
+              ><i v-else class="fa-regular fa-star"></i></span
+          ></span>
         </li>
       </ul>
     </div>
@@ -57,6 +71,13 @@ export default {
     },
     imageCard(image) {
       return `https://image.tmdb.org/t/p/w342/${image}`;
+    },
+    //DA SISTEMARE VVV
+    replaceByDefault() {
+      return "../../public/img/notFound.png";
+    },
+    voteAdjustment(vote) {
+      return Math.ceil(vote / 2);
     },
   },
   computed: {

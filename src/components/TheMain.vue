@@ -1,18 +1,20 @@
 <template>
-  <div class="container d-flex">
-    <div>
-      <h1>Film</h1>
-      <div class="row row-cols-3">
-        <div class="col" v-for="movie in moviesList" :key="movie.id">
-          <MovieCard :info="movie"></MovieCard>
+  <div class="bg-main">
+    <div class="container main-container d-flex flex-column">
+      <div class="pt-3">
+        <h1 class="text-white">Film</h1>
+        <div class="row row-cols-3 scroll">
+          <div class="col" v-for="movie in moviesList" :key="movie.id">
+            <MovieCard :info="movie"></MovieCard>
+          </div>
         </div>
       </div>
-    </div>
-    <div>
-      <h1>Serie TV</h1>
-      <div class="row row-cols-3">
-        <div class="col" v-for="serie in seriesList" :key="serie.id">
-          <SerieCard :info="serie"></SerieCard>
+      <div class="pt-3">
+        <h1 class="text-white">Serie TV</h1>
+        <div class="row row-cols-3 scroll">
+          <div class="col" v-for="serie in seriesList" :key="serie.id">
+            <SerieCard :info="serie"></SerieCard>
+          </div>
         </div>
       </div>
     </div>
@@ -37,4 +39,13 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.main-container {
+  height: 100%;
+}
+
+.bg-main {
+  background-color: black;
+}
+
+</style>

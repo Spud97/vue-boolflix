@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <img :src="imageCard(info.poster_path)" alt="" />
+  <div class="text-white pt-3">
+    <img v-if="info.poster_path" :src="imageCard(info.poster_path)" alt="" class="poster"/>
+    <img v-if="!info.poster_path" src="../../public/img/notFound.png" alt="" class="poster"/>
     <span class="px-3">Titolo: {{ info.name }}</span>
     <span class="px-3">Titolo originale: {{ info.original_name }}</span>
     <span class="px-3"
@@ -44,11 +45,6 @@ export default {
     imageCard(image) {
       return `https://image.tmdb.org/t/p/w342/${image}`;
     },
-    //DA SISTEMARE VVV
-    replaceByDefault() {
-      return "../../public/img/notFound.png";
-    },
-    //
     voteAdjustment(vote) {
       return Math.ceil(vote / 2);
     },
@@ -56,4 +52,12 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.fa-star {
+  color: yellow;
+}
+.poster {
+  height: 80%;
+  width: 80%;
+}
+</style>
